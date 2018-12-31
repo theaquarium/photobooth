@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Photo Booth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/index.css" />
+    <script src="assets/js/index.js" defer></script>
+</head>
+<body>
+    <div class="Title">
+        Happy New Year!
+    </div>
+    <div class="PhotoGrid">
+        <% photos.forEach(function(photourl){ %>
+            <img class="PhotoGrid-tile" src="thumbs/<%- photourl %>">
+        <% }); %>
+    </div>
+    <div class="NavButtons">
+        <div class="NavButtons-button NavButtons-button--previous <% if (previousDisabled) { %>is-disabled<% } %>">&larr;</div>
+        <div class="NavButtons-button NavButtons-button--next <% if (nextDisabled) { %>is-disabled<% } %>">&rarr;</div>
+    </div>
+    <footer class="Footer">
+        <div>
+            Copyright © 2018 Peter Vashevko
+            <br>
+            See code and license for this site on <a href="https://github.com/theaquarium/photobooth">Github</a>
+        </div>
+    </footer>
+    <div class="Overlay is-hidden">
+        <div class="Overlay-x"></div>
+        <img class="Overlay-image" src="assets/images/rick.png">
+    </div>
+</body>
+</html>

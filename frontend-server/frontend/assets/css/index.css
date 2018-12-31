@@ -1,0 +1,223 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+html { font-family: 'Inter UI', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter UI var alt', sans-serif; }
+}
+
+:root {
+    --color: rgba(0,0,0,0.6);
+    --hover-color: rgba(0,0,0,0.9);
+    --transition: 0.25s;
+
+    --gridtile-size: 20vmin;
+    --gridtile-gap: 2vmin;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    :root {
+      --button-size: 4vmax;
+      --button-thickness: 3px;
+      --tile-columns: 3;
+    }
+  }
+  /* Tablet Styles */
+  @media only screen and (min-width: 401px) and (max-width: 960px) {
+    :root {
+      --button-size: 4vmax;
+      --button-thickness: 3px;
+      --tile-columns: 3;
+    }
+  }
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    :root {
+      --button-size: 3vmax;
+      --button-thickness: 3px;
+      --tile-columns: 3;
+    }
+  }
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    background: #f5f5f5;
+}
+
+.Title {
+    width: 100%;
+    
+    padding: 4vh 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 800;
+    font-size: calc(15px + 10vmin);
+
+    flex-shrink: 0;
+
+    color: #202020;
+    text-shadow: -3px 3px 5px #C5B35888;
+    text-align: center;
+}
+
+.PhotoGrid {
+    display: grid;
+    min-width: calc(calc(var(--tile-columns) * var(--gridtile-size)) + calc(var(--gridtile-gap) * calc(var(--tile-columns) - 1)));
+    max-width: 95%;
+
+    grid-template-columns: repeat(var(--tile-columns), var(--gridtile-size));
+    grid-auto-rows: var(--gridtile-size);
+    grid-gap: var(--gridtile-gap);
+
+    flex: 1 0 auto;
+}
+
+.PhotoGrid-tile {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    cursor: pointer;
+
+    box-shadow: 0px 0px 2px 1px #C5B35888;
+    
+    transition: box-shadow 0.1s ease-in-out;
+}
+
+.PhotoGrid-tile:hover {
+    box-shadow: 0px 0px 5px 2px #C5B358bb;
+}
+
+.Footer {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 1.5vh 1.5vh 0 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 5vh;
+    padding: 1.5vh;
+    background: #e0e0e0;
+    flex-shrink: 0;
+    font-size: calc(8px + 1vmin);
+
+    box-shadow: 0px -1px 5px 1px #C5B35866;
+    text-align: center;
+}
+
+a {
+  color: #666666;
+}
+
+a:active {
+  color: #333333;
+}
+
+.Overlay {
+    position: absolute;
+
+    width: 100%;
+    height: 100vh;
+
+    z-index: 9998;
+
+    background: #222222aa;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* http://jsfiddle.net/elin/67sw12rL/ */
+.Overlay-x {
+    --color: rgba(0,0,0,0.4);
+    --hover-color: rgba(0,0,0,0.7);
+    --transition: 0.25s;
+    
+    display: block;
+    position: absolute;
+    right: calc(var(--button-size) / 2);
+    top: calc(var(--button-size) / 2);
+    width: var(--button-size);
+    height: var(--button-size);
+    cursor: pointer;
+}
+
+.Overlay-x:hover {
+    --color: rgba(0,0,0,0.7);
+}
+
+.Overlay-x:before {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--button-size);
+    height: 0;
+    border-top: var(--button-thickness) solid var(--color);
+    transform: rotate(45deg);
+    transform-origin: center;
+    transition: var(--transition);
+}
+
+.Overlay-x:after {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--button-size);
+    height: 0;
+    border-top: var(--button-thickness) solid var(--color);
+    transform: rotate(-45deg);
+    transform-origin: center;
+    transition: var(--transition);
+}
+
+.Overlay-image {
+    height: 66vmin;
+    width: 88vmin;
+
+    object-fit: contain;
+
+    z-index: 9999;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.NavButtons {
+    color: rgb(163, 148, 72);
+    display: flex;
+}
+
+.NavButtons-button {
+    cursor: pointer;
+    font-size: calc(16px + 5vmin);
+    font-weight: 800;
+    box-sizing: border-box;
+    padding: 1.5vmin;
+}
+
+.is-disabled {
+    color: rgb(138, 137, 126);
+    cursor: not-allowed;
+}

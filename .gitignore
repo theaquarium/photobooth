@@ -1,0 +1,7 @@
+frontend-server/node_modules/
+backend-server/__pycache__/
+*.pyc
+backend-server/venv/
+backend-server/photos/
+frontend-server/photos/thumbs/*
+frontend-server/photos/uploaded/*
