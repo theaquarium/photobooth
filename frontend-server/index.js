@@ -15,18 +15,18 @@ module.exports = function() {
         })
     });
     const app = express();
-    
+
     app.use('/assets', express.static('frontend/assets'));
     app.use('/images', express.static('photos/uploaded'));
     app.use('/thumbs', express.static('photos/thumbs'));
-    
+
     const pageSize = 9;
-    
+
     app.set('view engine', 'ejs');
     app.set('views', path.resolve('frontend/views'));
-    
+
     let fileList = fs.readdirSync(path.resolve('photos/thumbs')).reverse();
-    
+
     app.get('/', (req, res) => {
         let page = req.query.page || 1;
         let startIndex = (page - 1) * pageSize;
@@ -40,7 +40,7 @@ module.exports = function() {
             res.redirect('/?page=1');
         }
     });
-    
+
     app.post('/upload', upload.single('photo'), function (req, res, next) {
         console.log(`${process.pid} recieved`);
         Jimp.read(req.file.path)
@@ -58,9 +58,9 @@ module.exports = function() {
             .catch(err => {
                 console.error(err);
             });
-        console.log(`${process.pid} exiting`);
+        console.log(`${process.pid} exiting handler`);
         res.sendStatus(200);
     });
-    
-    app.listen(3500, () => console.log(`Listening on port 3500`));
+
+    app.listen(80, '0.0.0.0', () => console.log(`${process.pid} listening on port 80`));
 }
